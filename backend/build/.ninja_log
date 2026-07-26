@@ -1,15 +1,12 @@
 # ninja log v7
-42	2605	8067958142565130	CMakeFiles/intweather.dir/src/main.cpp.obj	8a3652f9ed6f7483
-2664	2958	8067958168779015	intweather.exe	d026c303a2324d23
-2	196	8067971758553776	build.ninja	222f41d5d851fa71
-2	196	8067971758518810	C:/Users/Glenn/Desktop/Work/intweather/backend/build/cmake_install.cmake	222f41d5d851fa71
-53	2664	8067958142667749	CMakeFiles/intweather.dir/src/controllers/HealthController.cpp.obj	4c0d535a44545981
-29	221	8067971758553776	build.ninja	222f41d5d851fa71
-29	221	8067971758553776	C:/Users/Glenn/Desktop/Work/intweather/backend/build/cmake_install.cmake	222f41d5d851fa71
-18	2579	8067971759166264	CMakeFiles/intweather.dir/src/main.cpp.obj	8a3652f9ed6f7483
-23	2615	8067971759166264	CMakeFiles/intweather.dir/src/controllers/WeatherController.cpp.obj	5572b812541defd
-2615	2878	8067971785122996	intweather.exe	20a90c34be60e40
-29	4413	8067972507397823	CMakeFiles/intweather.dir/src/main.cpp.obj	8a3652f9ed6f7483
-4414	4737	8067972551251390	intweather.exe	20a90c34be60e40
 47	2563	8067973704479037	CMakeFiles/intweather.dir/src/main.cpp.obj	8a3652f9ed6f7483
 2563	2839	8067973729678657	intweather.exe	20a90c34be60e40
+29	221	8067988045503432	build.ninja	222f41d5d851fa71
+29	221	8067988045503432	C:/Users/Glenn/Desktop/Work/intweather/backend/build/cmake_install.cmake	222f41d5d851fa71
+53	2664	8067958142667749	CMakeFiles/intweather.dir/src/controllers/HealthController.cpp.obj	4c0d535a44545981
+23	2615	8067971759166264	CMakeFiles/intweather.dir/src/controllers/WeatherController.cpp.obj	5572b812541defd
+37	216	8067988045503432	build.ninja	222f41d5d851fa71
+37	216	8067988045503432	C:/Users/Glenn/Desktop/Work/intweather/backend/build/cmake_install.cmake	222f41d5d851fa71
+34	2488	8067988046476239	CMakeFiles/intweather.dir/src/controllers/WeatherController.cpp.obj	5572b812541defd
+38	282	8067988920961204	CMakeFiles/intweather.dir/src/services/WeatherService.cpp.obj	fb25192ea8c0802a
+282	559	8067988923397760	intweather.exe	3ad5c29c9d6afe9c

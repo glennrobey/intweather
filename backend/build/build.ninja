@@ -82,6 +82,17 @@ build CMakeFiles\intweather.dir\src\controllers\WeatherController.cpp.obj: CXX_C
   TARGET_PDB = intweather.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\intweather.dir
 
+build CMakeFiles\intweather.dir\src\services\WeatherService.cpp.obj: CXX_COMPILER__intweather_unscanned_Debug C$:\Users\Glenn\Desktop\Work\intweather\backend\src\services\WeatherService.cpp || cmake_object_order_depends_target_intweather
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\intweather.dir\src\services\WeatherService.cpp.obj.d
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -clang:-std=c++23 -MDd /wd4251 /wd4275
+  INCLUDES = -IC:\Users\Glenn\Desktop\Work\intweather\backend\include -imsvcC:\vcpkg\installed\x64-windows\include
+  OBJECT_DIR = CMakeFiles\intweather.dir
+  OBJECT_FILE_DIR = CMakeFiles\intweather.dir\src\services
+  TARGET_COMPILE_PDB = CMakeFiles\intweather.dir\
+  TARGET_PDB = intweather.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\intweather.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target intweather
@@ -90,7 +101,7 @@ build CMakeFiles\intweather.dir\src\controllers\WeatherController.cpp.obj: CXX_C
 #############################################
 # Link the executable intweather.exe
 
-build intweather.exe: CXX_EXECUTABLE_LINKER__intweather_Debug CMakeFiles\intweather.dir\src\main.cpp.obj CMakeFiles\intweather.dir\src\controllers\HealthController.cpp.obj CMakeFiles\intweather.dir\src\controllers\WeatherController.cpp.obj | C$:\vcpkg\installed\x64-windows\debug\lib\drogon.lib C$:\vcpkg\installed\x64-windows\debug\lib\trantor.lib C$:\vcpkg\installed\x64-windows\debug\lib\jsoncpp.lib
+build intweather.exe: CXX_EXECUTABLE_LINKER__intweather_Debug CMakeFiles\intweather.dir\src\main.cpp.obj CMakeFiles\intweather.dir\src\controllers\HealthController.cpp.obj CMakeFiles\intweather.dir\src\controllers\WeatherController.cpp.obj CMakeFiles\intweather.dir\src\services\WeatherService.cpp.obj | C$:\vcpkg\installed\x64-windows\debug\lib\drogon.lib C$:\vcpkg\installed\x64-windows\debug\lib\trantor.lib C$:\vcpkg\installed\x64-windows\debug\lib\jsoncpp.lib
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
