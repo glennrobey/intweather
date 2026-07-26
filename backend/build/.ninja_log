@@ -12,3 +12,7 @@
 23	292	8067995386007269	CMakeFiles/intweather.dir/src/services/WeatherService.cpp.obj	fb25192ea8c0802a
 17	2415	8067995385962600	CMakeFiles/intweather.dir/src/controllers/WeatherController.cpp.obj	5572b812541defd
 2416	2663	8067995409874798	intweather.exe	1864157a62382ce1
+56	310	8068010847949575	CMakeFiles/intweather.dir/src/services/WeatherService.cpp.obj	fb25192ea8c0802a
+66	343	8068010848116964	CMakeFiles/intweather.dir/src/clients/WeatherApiClient.cpp.obj	507516af64566e13
+39	2548	8068012032233129	CMakeFiles/intweather.dir/src/controllers/WeatherController.cpp.obj	5572b812541defd
+2549	2824	8068012057286197	intweather.exe	1864157a62382ce1

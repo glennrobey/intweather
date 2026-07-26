@@ -2,14 +2,29 @@
 #include "services/WeatherService.hpp"
 
 void WeatherController::registerRoutes() {
-  static WeatherService service;
 
   drogon::app().registerHandler(
       "/api/weather",
-      [&service](
-          const drogon::HttpRequestPtr &,
-          std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
-        auto weather = service.getWeather("Chicago");
+      [](const drogon::HttpRequestPtr &req,
+         std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
+        static WeatherService service;
+
+        auto city = req->getParameter("city");
+
+        if (city.empty()) {
+          Json::Value error;
+
+          error["error"] = "City parameter required";
+
+          auto resp = drogon::HttpResponse::newHttpJsonResponse(error);
+
+          resp->setStatusCode(drogon::k400BadRequest);
+
+          callback(resp);
+          return;
+        }
+
+        auto weather = service.getWeather(city);
 
         Json::Value response;
 
