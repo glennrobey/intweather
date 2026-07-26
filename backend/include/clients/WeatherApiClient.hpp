@@ -5,5 +5,5 @@
 
 class WeatherApiClient {
 public:
-  Weather fetchWeather(const std::string &city);
+  Weather fetchWeather(double latitude, double longitude);
 };

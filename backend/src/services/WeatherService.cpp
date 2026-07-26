@@ -1,5 +1,7 @@
 #include "services/WeatherService.hpp"
 
 Weather WeatherService::getWeather(const std::string &city) {
-  return client.fetchWeather(city);
+  auto location = geocodingClient.getCoordinates(city);
+
+  return weatherClient.fetchWeather(location.latitude, location.longitude);
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "clients/GeocodingClient.hpp"
 #include "clients/WeatherApiClient.hpp"
 #include "models/Weather.hpp"
 
@@ -11,4 +12,5 @@ public:
 
 private:
   WeatherApiClient client;
+  GeocodingClient geocodingClient;
 };
