@@ -10,6 +10,7 @@ find_package(Drogon CONFIG REQUIRED)
 add_executable(intweather
     src/main.cpp
     src/controllers/HealthController.cpp
+    src/controllers/WeatherController.cpp
 )
 
 target_include_directories(intweather PRIVATE include)
