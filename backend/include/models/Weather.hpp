@@ -4,7 +4,13 @@
 
 struct Weather {
   std::string city;
-  double temperature;
-  std::string condition;
-  double humidity;
+
+  double temperatureF = 0.0;
+  double feelsLikeF = 0.0;
+
+  double humidity = 0.0;
+
+  double windSpeedMph = 0.0;
+
+  std::string condition = "Unknown";
 };

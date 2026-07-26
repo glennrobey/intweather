@@ -4,9 +4,11 @@ Weather WeatherApiClient::fetchWeather(const std::string &city) {
   Weather weather;
 
   weather.city = city;
-  weather.temperature = 75;
+  weather.temperatureF = 75.0;
+  weather.feelsLikeF = 76.0;
+  weather.humidity = 45.0;
+  weather.windSpeedMph = 10.0;
   weather.condition = "Sunny";
-  weather.humidity = 45;
 
   return weather;
 }
