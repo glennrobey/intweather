@@ -5,6 +5,13 @@ project(IntWeather)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(Drogon CONFIG REQUIRED)
+
 add_executable(intweather
     src/main.cpp
+    src/controllers/HealthController.cpp
 )
+
+target_include_directories(intweather PRIVATE include)
+
+target_link_libraries(intweather PRIVATE Drogon::Drogon)
