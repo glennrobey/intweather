@@ -12,6 +12,7 @@ add_executable(intweather
     src/controllers/HealthController.cpp
     src/controllers/WeatherController.cpp
     src/services/WeatherService.cpp
+    src/clients/WeatherApiClient.cpp
 )
 
 target_include_directories(intweather PRIVATE include)
