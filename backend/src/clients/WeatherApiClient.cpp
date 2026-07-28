@@ -1,8 +1,10 @@
 #include "clients/WeatherApiClient.hpp"
 
+#include <cmath>
 #include <cstdlib>
 #include <drogon/drogon.h>
 #include <iostream>
+#include <mmeapi.h>
 #include <sstream>
 #include <stdexcept>
 
@@ -53,13 +55,16 @@ Weather WeatherApiClient::fetchWeather(const std::string &city, double latitude,
 
   weather.city = city;
 
-  weather.temperatureF = current["temperature"].asDouble();
+  weather.temperatureF =
+      std::round(current["temperature"].asDouble() * 10) / 10.0;
 
-  weather.feelsLikeF = current["apparentTemperature"].asDouble();
+  weather.feelsLikeF =
+      std::round(current["apparentTemperature"].asDouble() * 10) / 10.0;
 
-  weather.humidity = current["humidity"].asDouble() * 100;
+  weather.humidity = std::round(current["humidity"].asDouble() * 100);
 
-  weather.windSpeedMph = current["windSpeed"].asDouble();
+  weather.windSpeedMph =
+      std::round(current["windSpeed"].asDouble() * 10) / 10.0;
 
   weather.condition = current["summary"].asString();
 
