@@ -11,6 +11,7 @@ public:
   Weather getWeather(const std::string &city);
 
 private:
+  std::string capitalizeCity(std::string city);
   WeatherApiClient weatherClient;
   GeocodingClient geocodingClient;
 };

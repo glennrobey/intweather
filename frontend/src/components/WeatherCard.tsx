@@ -21,6 +21,7 @@ function WeatherCard({ weather }: WeatherCardProps) {
     transition
     duration-300
     ease-in-out
+hover:scale-140
       "
     >
       <h2 className="text-2xl font-semibold">{weather.city}</h2>
