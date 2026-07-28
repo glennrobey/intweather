@@ -28,9 +28,12 @@ function SearchBar({ city, setCity, onSearch }: SearchBarProps) {
         className="
           rounded-full
           px-6
-          bg-blue-500
+          bg-gray-500
           text-white
-          hover:bg-blue-600
+          hover:bg-black
+    transition
+    duration-300
+    ease-in-out
         "
         onClick={onSearch}
       >

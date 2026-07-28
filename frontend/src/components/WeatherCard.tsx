@@ -17,6 +17,10 @@ function WeatherCard({ weather }: WeatherCardProps) {
         text-white
         shadow-2xl
         w-96
+          hover:bg-black
+    transition
+    duration-300
+    ease-in-out
       "
     >
       <h2 className="text-2xl font-semibold">{weather.city}</h2>
