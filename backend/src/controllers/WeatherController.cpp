@@ -1,5 +1,8 @@
 #include "controllers/WeatherController.hpp"
+#include "clients/GeocodingClient.hpp"
 #include "services/WeatherService.hpp"
+
+#include <drogon/drogon.h>
 
 void addCorsHeaders(const drogon::HttpResponsePtr &resp) {
   resp->addHeader("Access-Control-Allow-Origin", "http://localhost:5173");
@@ -10,11 +13,12 @@ void addCorsHeaders(const drogon::HttpResponsePtr &resp) {
 }
 
 void WeatherController::registerRoutes() {
+
+  // Weather endpoint
   drogon::app().registerHandler(
       "/api/weather",
       [](const drogon::HttpRequestPtr &req,
          std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
-        // Handle browser preflight request
         if (req->method() == drogon::Options) {
           auto resp = drogon::HttpResponse::newHttpResponse();
 
@@ -29,6 +33,7 @@ void WeatherController::registerRoutes() {
         auto city = req->getParameter("city");
 
         if (city.empty()) {
+
           Json::Value error;
 
           error["error"] = "City parameter required";
@@ -53,6 +58,40 @@ void WeatherController::registerRoutes() {
         response["humidity"] = weather.humidity;
         response["windSpeedMph"] = weather.windSpeedMph;
         response["condition"] = weather.condition;
+
+        auto resp = drogon::HttpResponse::newHttpJsonResponse(response);
+
+        addCorsHeaders(resp);
+
+        callback(resp);
+      });
+
+  // City autocomplete endpoint
+  drogon::app().registerHandler(
+      "/api/cities",
+      [](const drogon::HttpRequestPtr &req,
+         std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
+        if (req->method() == drogon::Options) {
+
+          auto resp = drogon::HttpResponse::newHttpResponse();
+
+          addCorsHeaders(resp);
+
+          callback(resp);
+          return;
+        }
+
+        static GeocodingClient client;
+
+        auto query = req->getParameter("query");
+
+        auto cities = client.searchCities(query);
+
+        Json::Value response;
+
+        for (const auto &city : cities) {
+          response.append(city);
+        }
 
         auto resp = drogon::HttpResponse::newHttpJsonResponse(response);
 
