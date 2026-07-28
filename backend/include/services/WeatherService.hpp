@@ -11,6 +11,6 @@ public:
   Weather getWeather(const std::string &city);
 
 private:
-  WeatherApiClient client;
+  WeatherApiClient weatherClient;
   GeocodingClient geocodingClient;
 };
