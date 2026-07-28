@@ -3,6 +3,11 @@ interface SearchBarProps {
   setCity: (city: string) => void;
   onSearch: () => void;
 }
+interface SearchBarProps {
+  city: string;
+  setCity: (city: string) => void;
+  onSearch: () => void;
+}
 
 function SearchBar({ city, setCity, onSearch }: SearchBarProps) {
   return (
@@ -21,6 +26,11 @@ function SearchBar({ city, setCity, onSearch }: SearchBarProps) {
         "
         value={city}
         onChange={(e) => setCity(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            onSearch();
+          }
+        }}
         placeholder="Search city..."
       />
 
@@ -31,10 +41,10 @@ function SearchBar({ city, setCity, onSearch }: SearchBarProps) {
           bg-gray-500
           text-white
           hover:bg-black
-    transition
-    duration-300
-    ease-in-out
-hover:scale-105
+          transition
+          duration-300
+          ease-in-out
+          hover:scale-105
         "
         onClick={onSearch}
       >
