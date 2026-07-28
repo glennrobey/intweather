@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getWeather, type Weather } from "./api/weather";
 import WeatherCard from "./components/WeatherCard";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [city, setCity] = useState("");
@@ -26,16 +27,23 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-blue-500 flex items-center justify-center">
+    <div
+      className="
+    min-h-screen
+    bg-gradient-to-br
+    from-zinc-900
+    via-slate-800
+    to-zinc-700
+    flex
+    flex-col
+    items-center
+    justify-center
+    gap-6
+  "
+    >
       <h1 className="text-5xl font-bold text-white">IntWeather</h1>
 
-      <input
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        placeholder="Enter city"
-      />
-
-      <button onClick={searchWeather}>Search</button>
+      <SearchBar city={city} setCity={setCity} onSearch={searchWeather} />
 
       {loading && <p>Loading weather...</p>}
 
