@@ -1,15 +1,42 @@
+import { Thermometer, Droplets, Wind, Cloud, MapPin } from "lucide-react";
+
 import type { Weather } from "../types/Weather";
+import WeatherInfoCard from "./WeatherInfoCard";
+import { getWeatherIcon } from "../utils/weatherIcon";
 
 interface WeatherCardProps {
   weather: Weather;
 }
 
 function WeatherCard({ weather }: WeatherCardProps) {
+  const cards = [
+    {
+      title: "Temperature",
+      value: `${weather.temperatureF}°F`,
+      icon: <Thermometer size={32} className="text-white" strokeWidth={1.5} />,
+    },
+    {
+      title: "Feels Like",
+      value: `${weather.feelsLikeF}°F`,
+      icon: <Thermometer size={32} className="text-white" strokeWidth={1.5} />,
+    },
+    {
+      title: "Humidity",
+      value: `${weather.humidity}%`,
+      icon: <Droplets size={32} className="text-white" strokeWidth={1.5} />,
+    },
+    {
+      title: "Wind",
+      value: `${weather.windSpeedMph} mph`,
+      icon: <Wind size={32} className="text-white" strokeWidth={1.5} />,
+    },
+  ];
+
   return (
     <div
       className="
         bg-white/10
-        backdrop-blur-lg
+        backdrop-blur-xl
         border
         border-white/20
         rounded-3xl
@@ -17,34 +44,34 @@ function WeatherCard({ weather }: WeatherCardProps) {
         text-white
         shadow-2xl
         w-96
-          hover:bg-black
-    transition
-    duration-300
-    ease-in-out
-hover:scale-140
+        transition
+        duration-300
+        hover:shadow-white/10
       "
     >
-      <h2 className="text-2xl font-semibold">{weather.city}</h2>
+      <div className="flex items-center justify-center gap-2 mb-6">
+        <MapPin size={28} className="text-white" strokeWidth={1.5} />
 
-      <h1 className="text-7xl font-bold mt-4">{weather.temperatureF}°</h1>
+        <h2 className="text-3xl font-bold">{weather.city}</h2>
+      </div>
 
-      <p className="text-xl text-gray-200">{weather.condition}</p>
+      <div className="grid grid-cols-2 gap-4">
+        {cards.map((card) => (
+          <WeatherInfoCard
+            key={card.title}
+            icon={card.icon}
+            title={card.title}
+            value={card.value}
+          />
+        ))}
+      </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-6">
-        <div className="bg-white/10 rounded-xl p-4">
-          <p className="text-gray-300">Feels Like</p>
-          <p className="text-2xl font-bold">{weather.feelsLikeF}°</p>
-        </div>
-
-        <div className="bg-white/10 rounded-xl p-4">
-          <p className="text-gray-300">Humidity</p>
-          <p className="text-2xl font-bold">{weather.humidity}%</p>
-        </div>
-
-        <div className="bg-white/10 rounded-xl p-4 col-span-2">
-          <p className="text-gray-300">Wind</p>
-          <p className="text-2xl font-bold">{weather.windSpeedMph} mph</p>
-        </div>
+      <div className="mt-4">
+        <WeatherInfoCard
+          icon={getWeatherIcon(weather.condition)}
+          title="Conditions"
+          value={weather.condition}
+        />
       </div>
     </div>
   );
