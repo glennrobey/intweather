@@ -62,17 +62,14 @@ function App() {
   return (
     <div
       className="
-        min-h-screen
-        bg-gradient-to-br
-        from-zinc-900
-        via-slate-800
-        to-zinc-700
-        flex
-        flex-col
-        items-center
-        justify-center
-        gap-6
-      "
+    min-h-screen
+    bg-zinc-950
+    flex
+    flex-col
+    items-center
+    justify-center
+    gap-6
+  "
     >
       <h1 className="text-5xl font-bold text-white">IntWeather</h1>
 

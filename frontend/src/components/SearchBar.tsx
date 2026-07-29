@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface SearchBarProps {
   city: string;
@@ -16,38 +16,84 @@ function SearchBar({
   onSelectSuggestion,
 }: SearchBarProps) {
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+        setSelectedIndex(-1);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="relative flex gap-3">
+    <div ref={searchRef} className="relative flex gap-3">
       <input
         className="
-    rounded-full
-    px-5
-    py-3
-    bg-white/10
-    backdrop-blur-md
-    border
-    border-white/20
-    text-white
-    outline-none
-  "
+          rounded-full
+          px-5
+          py-3
+          bg-white/10
+          backdrop-blur-md
+          border
+          border-white/20
+          text-white
+          outline-none
+        "
         value={city}
         onChange={(e) => {
           setCity(e.target.value);
           setShowSuggestions(true);
+          setSelectedIndex(-1);
         }}
         onKeyDown={(e) => {
+          const results = suggestions ?? [];
+
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+
+            setSelectedIndex((prev) =>
+              prev < results.length - 1 ? prev + 1 : prev,
+            );
+          }
+
+          if (e.key === "ArrowUp") {
+            e.preventDefault();
+
+            setSelectedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+          }
+
           if (e.key === "Enter") {
-            setShowSuggestions(false);
-            onSearch();
+            if (selectedIndex >= 0) {
+              setShowSuggestions(false);
+              onSelectSuggestion(results[selectedIndex]);
+            } else {
+              setShowSuggestions(false);
+              onSearch();
+            }
           }
 
           if (e.key === "Escape") {
             setShowSuggestions(false);
+            setSelectedIndex(-1);
           }
         }}
         placeholder="Search city..."
       />
+
       <button
         className="
           rounded-full
@@ -68,7 +114,7 @@ function SearchBar({
         Search
       </button>
 
-      {showSuggestions && suggestions?.length > 0 && (
+      {showSuggestions && suggestions && suggestions.length > 0 && (
         <div
           className="
             absolute
@@ -88,24 +134,25 @@ function SearchBar({
           {suggestions.map((suggestion, index) => (
             <button
               key={`${suggestion}-${index}`}
-              className="
-      block
-      w-full
-      text-left
-      px-5
-      py-3
-      text-white
-      hover:bg-white/20
-      transition
-    "
+              className={`
+                block
+                w-full
+                text-left
+                px-5
+                py-3
+                text-white
+                transition
+                ${selectedIndex === index ? "bg-white/20" : "hover:bg-white/20"}
+              `}
               onClick={() => {
                 setShowSuggestions(false);
+                setSelectedIndex(-1);
                 onSelectSuggestion(suggestion);
               }}
             >
               {suggestion}
             </button>
-          ))}{" "}
+          ))}
         </div>
       )}
     </div>
