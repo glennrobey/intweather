@@ -3,21 +3,25 @@
 #include <drogon/HttpClient.h>
 #include <json/json.h>
 
-#include <cctype>
-#include <sstream>
+#include <iostream>
+#include <string>
 #include <vector>
+
 Location GeocodingClient::getCoordinates(const std::string &city) {
+
+  std::cout << "Searching coordinates for: [" << city << "]\n";
+
   auto client =
       drogon::HttpClient::newHttpClient("https://geocoding-api.open-meteo.com");
 
-  std::ostringstream path;
-
-  path << "/v1/search?name=" << drogon::utils::urlEncode(city)
-       << "&count=1&language=en&format=json";
-
   auto request = drogon::HttpRequest::newHttpRequest();
 
-  request->setPath(path.str());
+  request->setPath("/v1/search");
+
+  request->setParameter("name", city);
+  request->setParameter("count", "1");
+  request->setParameter("language", "en");
+  request->setParameter("format", "json");
 
   auto result = client->sendRequest(request);
 
@@ -26,6 +30,10 @@ Location GeocodingClient::getCoordinates(const std::string &city) {
   }
 
   auto response = result.second;
+
+  std::cout << "HTTP Status: " << response->getStatusCode() << std::endl;
+
+  std::cout << "Raw Body:\n" << response->getBody() << std::endl;
 
   auto json = response->getJsonObject();
 
@@ -46,6 +54,7 @@ Location GeocodingClient::getCoordinates(const std::string &city) {
 
 std::vector<std::string>
 GeocodingClient::searchCities(const std::string &query) {
+
   std::vector<std::string> cities;
 
   if (query.empty()) {
@@ -55,13 +64,14 @@ GeocodingClient::searchCities(const std::string &query) {
   auto client =
       drogon::HttpClient::newHttpClient("https://geocoding-api.open-meteo.com");
 
-  std::ostringstream path;
-
-  path << "/v1/search?name=" << drogon::utils::urlEncode(query)
-       << "&count=10&language=en&format=json";
-
   auto request = drogon::HttpRequest::newHttpRequest();
-  request->setPath(path.str());
+
+  request->setPath("/v1/search");
+
+  request->setParameter("name", query);
+  request->setParameter("count", "10");
+  request->setParameter("language", "en");
+  request->setParameter("format", "json");
 
   auto result = client->sendRequest(request);
 
@@ -76,6 +86,7 @@ GeocodingClient::searchCities(const std::string &query) {
   }
 
   for (const auto &city : (*json)["results"]) {
+
     std::string display = city["name"].asString();
 
     if (city.isMember("admin1")) {

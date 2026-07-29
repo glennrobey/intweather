@@ -52,6 +52,7 @@ void WeatherController::registerRoutes() {
         static WeatherService service;
 
         auto city = req->getParameter("city");
+        std::cout << "Requested city: [" << city << "]" << std::endl;
 
         if (city.empty()) {
 

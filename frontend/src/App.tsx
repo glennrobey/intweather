@@ -12,16 +12,20 @@ function App() {
   const [error, setError] = useState("");
 
   async function searchWeather(searchCity = city) {
-    searchCity = searchCity.split(",")[0];
-    if (!searchCity) return;
+    const cleanCity = searchCity.split(",")[0].trim();
+
+    console.log("Searching:", cleanCity);
+
+    if (!cleanCity) return;
 
     try {
       setLoading(true);
       setError("");
 
-      const data = await getWeather(searchCity);
+      const data = await getWeather(cleanCity);
 
       setWeather(data);
+      setCity(cleanCity);
       setSuggestions([]);
     } catch (err) {
       setError("Could not find weather");
@@ -30,7 +34,6 @@ function App() {
       setLoading(false);
     }
   }
-
   useEffect(() => {
     async function fetchSuggestions() {
       if (city.trim().length < 2) {
@@ -52,10 +55,12 @@ function App() {
   }, [city]);
 
   function selectCity(selectedCity: string) {
-    console.log("Selected city:", selectedCity);
+    const cleanCity = selectedCity.split(",")[0].trim();
 
-    setCity(selectedCity);
-    searchWeather(selectedCity);
+    console.log("Selected city:", cleanCity);
+
+    setCity(cleanCity);
+    searchWeather(cleanCity);
   }
 
   return (
