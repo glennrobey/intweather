@@ -43,17 +43,16 @@ function SearchBar({
     <div ref={searchRef} className="relative flex gap-3">
       <input
         className="
-          rounded-full
-          px-5
-          py-3
-          bg-white/10
-          backdrop-blur-md
-          border
-          border-white/20
-          text-white
-          plzceholder-white
-          outline-none
-        "
+    rounded-full
+    px-5
+    py-3
+    bg-black/30
+    backdrop-blur-xl
+    border
+    border-white/20
+    text-white
+    outline-none
+  "
         value={city}
         onChange={(e) => {
           setCity(e.target.value);
