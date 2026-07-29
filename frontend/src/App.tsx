@@ -63,7 +63,10 @@ function App() {
     <div
       className="
     min-h-screen
-    bg-zinc-950
+    bg-gradient-to-br
+    from-black
+    via-zinc-900
+    to-neutral-800
     flex
     flex-col
     items-center

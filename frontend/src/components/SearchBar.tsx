@@ -51,6 +51,7 @@ function SearchBar({
           border
           border-white/20
           text-white
+          plzceholder-white
           outline-none
         "
         value={city}
@@ -104,7 +105,7 @@ function SearchBar({
           transition
           duration-300
           ease-in-out
-          hover:scale-105
+          hover:scale-115
         "
         onClick={() => {
           setShowSuggestions(false);
