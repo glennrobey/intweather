@@ -5,7 +5,8 @@ void CorsFilter::doFilter(const drogon::HttpRequestPtr &req,
                           drogon::FilterChainCallback &&chainCallback) {
   auto response = drogon::HttpResponse::newHttpResponse();
 
-  response->addHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  response->addHeader("Access-Control-Allow-Origin",
+                      "https://intweather.vercel.app");
 
   response->addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
