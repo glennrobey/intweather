@@ -105,6 +105,8 @@ function SearchBar({
           duration-300
           ease-in-out
           hover:scale-115
+              active:bg-black
+    active:scale-95
         "
         onClick={() => {
           setShowSuggestions(false);

@@ -18,6 +18,8 @@ function WeatherInfoCard({ icon, title, value }: WeatherInfoCardProps) {
         hover:bg-black
         hover:scale-105
         hover:shadow-xl
+        active:bg-black
+        active:scale-105
       "
     >
       <div className="flex justify-center mb-2">{icon}</div>
