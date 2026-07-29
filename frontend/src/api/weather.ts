@@ -12,17 +12,11 @@ export async function getWeather(city: string) {
     `http://localhost:8080/api/weather?city=${encodeURIComponent(city)}`,
   );
 
-  console.log("Status:", response.status);
-
-  const text = await response.text();
-
-  console.log("Backend response:", text);
-
   if (!response.ok) {
     throw new Error("Failed to fetch weather");
   }
 
-  return JSON.parse(text);
+  return response.json();
 }
 
 export async function getCitySuggestions(query: string): Promise<string[]> {

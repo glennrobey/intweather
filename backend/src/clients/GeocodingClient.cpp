@@ -31,10 +31,6 @@ Location GeocodingClient::getCoordinates(const std::string &city) {
 
   auto response = result.second;
 
-  std::cout << "HTTP Status: " << response->getStatusCode() << std::endl;
-
-  std::cout << "Raw Body:\n" << response->getBody() << std::endl;
-
   auto json = response->getJsonObject();
 
   if (!json || !(*json).isMember("results") || (*json)["results"].empty()) {

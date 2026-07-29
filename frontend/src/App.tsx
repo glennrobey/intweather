@@ -14,8 +14,6 @@ function App() {
   async function searchWeather(searchCity = city) {
     const cleanCity = searchCity.split(",")[0].trim();
 
-    console.log("Searching:", cleanCity);
-
     if (!cleanCity) return;
 
     try {
@@ -56,8 +54,6 @@ function App() {
 
   function selectCity(selectedCity: string) {
     const cityName = selectedCity.split(",")[0];
-
-    console.log("Selected city:", cityName);
 
     setCity(cityName);
     searchWeather(cityName);

@@ -47,7 +47,6 @@ Weather WeatherApiClient::fetchWeather(const std::string &city, double latitude,
   }
 
   // Debug API response (remove later)
-  std::cout << json->toStyledString() << std::endl;
 
   auto current = (*json)["currently"];
 
