@@ -1,4 +1,4 @@
-import { Thermometer, Droplets, Wind, Cloud, MapPin, Hand } from "lucide-react";
+import { Thermometer, Droplets, Wind, MapPin, Hand } from "lucide-react";
 
 import type { Weather } from "../types/Weather";
 import WeatherInfoCard from "./WeatherInfoCard";

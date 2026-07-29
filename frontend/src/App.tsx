@@ -3,6 +3,7 @@ import { getWeather, getCitySuggestions } from "./api/weather";
 import WeatherCard from "./components/WeatherCard";
 import SearchBar from "./components/SearchBar";
 import LoadingSpinner from "./components/LoadingSpinner";
+import type { Weather } from "./api/weather";
 
 function App() {
   const [suggestions, setSuggestions] = useState<string[]>([]);

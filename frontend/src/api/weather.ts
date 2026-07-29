@@ -1,19 +1,6 @@
-import { useEffect, useState } from "react";
-import { getWeather, getCitySuggestions } from "./api/weather";
-import WeatherCard from "./components/WeatherCard";
-import SearchBar from "./components/SearchBar";
-import type { Weather } from "./types/Weather";
+import type { Weather } from "../types/Weather";
 
-export interface Weather {
-  city: string;
-  temperatureF: number;
-  feelsLikeF: number;
-  humidity: number;
-  windSpeedMph: number;
-  condition: string;
-}
-
-export async function getWeather(city: string) {
+export async function getWeather(city: string): Promise<Weather> {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const response = await fetch(
