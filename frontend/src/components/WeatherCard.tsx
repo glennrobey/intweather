@@ -1,4 +1,4 @@
-import { Thermometer, Droplets, Wind, Cloud, MapPin } from "lucide-react";
+import { Thermometer, Droplets, Wind, Cloud, MapPin, Hand } from "lucide-react";
 
 import type { Weather } from "../types/Weather";
 import WeatherInfoCard from "./WeatherInfoCard";
@@ -18,7 +18,7 @@ function WeatherCard({ weather }: WeatherCardProps) {
     {
       title: "Feels Like",
       value: `${weather.feelsLikeF}°F`,
-      icon: <Thermometer size={32} className="text-white" strokeWidth={1.5} />,
+      icon: <Hand size={32} className="text-white" strokeWidth={1.5} />,
     },
     {
       title: "Humidity",
