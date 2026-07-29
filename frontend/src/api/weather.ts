@@ -8,8 +8,10 @@ export interface Weather {
 }
 
 export async function getWeather(city: string) {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const response = await fetch(
-    `http://localhost:8080/api/weather?city=${encodeURIComponent(city)}`,
+    `${API_URL}/api/weather?city=${encodeURIComponent(city)}`,
   );
 
   if (!response.ok) {
@@ -20,8 +22,10 @@ export async function getWeather(city: string) {
 }
 
 export async function getCitySuggestions(query: string): Promise<string[]> {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const response = await fetch(
-    `http://localhost:8080/api/cities?query=${encodeURIComponent(query)}`,
+    `${API_URL}/api/cities?query=${encodeURIComponent(query)}`,
   );
 
   if (!response.ok) {
