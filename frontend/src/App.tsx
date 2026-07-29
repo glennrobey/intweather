@@ -76,7 +76,7 @@ function App() {
     gap-6
   "
     >
-      <h1 className="text-5xl font-bold text-white">IntWeather</h1>
+      <h1 className="text-5xl font-bold text-white">International Weather</h1>
 
       <SearchBar
         city={city}
