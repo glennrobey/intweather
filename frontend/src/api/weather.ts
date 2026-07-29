@@ -1,4 +1,4 @@
-import type { Weather } from "./types/Weather";
+import type { Weather } from "../types/Weather";
 
 export async function getWeather(city: string): Promise<Weather> {
   const API_URL = import.meta.env.VITE_API_URL;
