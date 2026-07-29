@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <drogon/drogon.h>
 #include <iostream>
-#include <mmeapi.h>
 #include <sstream>
 #include <stdexcept>
 
