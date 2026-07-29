@@ -1,8 +1,10 @@
+import { useState } from "react";
+
 interface SearchBarProps {
   city: string;
   setCity: (city: string) => void;
   onSearch: () => void;
-  suggestions: string[];
+  suggestions: string[] | null;
   onSelectSuggestion: (city: string) => void;
 }
 
@@ -13,30 +15,39 @@ function SearchBar({
   suggestions,
   onSelectSuggestion,
 }: SearchBarProps) {
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
   return (
     <div className="relative flex gap-3">
       <input
         className="
-          rounded-full
-          px-5
-          py-3
-          bg-white/10
-          backdrop-blur-md
-          border
-          border-white/20
-          text-white
-          outline-none
-        "
+    rounded-full
+    px-5
+    py-3
+    bg-white/10
+    backdrop-blur-md
+    border
+    border-white/20
+    text-white
+    outline-none
+  "
         value={city}
-        onChange={(e) => setCity(e.target.value)}
+        onChange={(e) => {
+          setCity(e.target.value);
+          setShowSuggestions(true);
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
+            setShowSuggestions(false);
             onSearch();
+          }
+
+          if (e.key === "Escape") {
+            setShowSuggestions(false);
           }
         }}
         placeholder="Search city..."
       />
-
       <button
         className="
           rounded-full
@@ -49,12 +60,15 @@ function SearchBar({
           ease-in-out
           hover:scale-105
         "
-        onClick={onSearch}
+        onClick={() => {
+          setShowSuggestions(false);
+          onSearch();
+        }}
       >
         Search
       </button>
 
-      {suggestions?.length > 0 && (
+      {showSuggestions && suggestions?.length > 0 && (
         <div
           className="
             absolute
@@ -85,13 +99,13 @@ function SearchBar({
       transition
     "
               onClick={() => {
-                const cityName = suggestion.split(",")[0];
-                onSelectSuggestion(cityName);
+                setShowSuggestions(false);
+                onSelectSuggestion(suggestion);
               }}
             >
               {suggestion}
             </button>
-          ))}
+          ))}{" "}
         </div>
       )}
     </div>

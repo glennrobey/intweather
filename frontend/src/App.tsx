@@ -55,12 +55,12 @@ function App() {
   }, [city]);
 
   function selectCity(selectedCity: string) {
-    const cleanCity = selectedCity.split(",")[0].trim();
+    const cityName = selectedCity.split(",")[0];
 
-    console.log("Selected city:", cleanCity);
+    console.log("Selected city:", cityName);
 
-    setCity(cleanCity);
-    searchWeather(cleanCity);
+    setCity(cityName);
+    searchWeather(cityName);
   }
 
   return (
