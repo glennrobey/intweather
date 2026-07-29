@@ -2,16 +2,19 @@ interface SearchBarProps {
   city: string;
   setCity: (city: string) => void;
   onSearch: () => void;
-}
-interface SearchBarProps {
-  city: string;
-  setCity: (city: string) => void;
-  onSearch: () => void;
+  suggestions: string[];
+  onSelectSuggestion: (city: string) => void;
 }
 
-function SearchBar({ city, setCity, onSearch }: SearchBarProps) {
+function SearchBar({
+  city,
+  setCity,
+  onSearch,
+  suggestions,
+  onSelectSuggestion,
+}: SearchBarProps) {
   return (
-    <div className="flex gap-3">
+    <div className="relative flex gap-3">
       <input
         className="
           rounded-full
@@ -50,6 +53,47 @@ function SearchBar({ city, setCity, onSearch }: SearchBarProps) {
       >
         Search
       </button>
+
+      {suggestions?.length > 0 && (
+        <div
+          className="
+            absolute
+            top-14
+            left-0
+            w-full
+            bg-black/70
+            backdrop-blur-lg
+            border
+            border-white/20
+            rounded-2xl
+            overflow-hidden
+            shadow-xl
+            z-10
+          "
+        >
+          {suggestions.map((suggestion, index) => (
+            <button
+              key={`${suggestion}-${index}`}
+              className="
+      block
+      w-full
+      text-left
+      px-5
+      py-3
+      text-white
+      hover:bg-white/20
+      transition
+    "
+              onClick={() => {
+                const cityName = suggestion.split(",")[0];
+                onSelectSuggestion(cityName);
+              }}
+            >
+              {suggestion}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

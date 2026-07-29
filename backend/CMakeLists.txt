@@ -15,8 +15,13 @@ add_executable(intweather
     src/clients/WeatherApiClient.cpp
     src/clients/GeocodingClient.cpp
     src/config/EnvLoader.cpp
+    src/filters/CorsFilter.cpp
 )
 
-target_include_directories(intweather PRIVATE include)
+target_include_directories(intweather PRIVATE
+    include
+)
 
-target_link_libraries(intweather PRIVATE Drogon::Drogon)
+target_link_libraries(intweather PRIVATE
+    Drogon::Drogon
+)
