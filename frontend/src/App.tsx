@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getWeather, getCitySuggestions } from "./api/weather";
 import WeatherCard from "./components/WeatherCard";
 import SearchBar from "./components/SearchBar";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -84,7 +85,7 @@ function App() {
         onSelectSuggestion={selectCity}
       />
 
-      {loading && <p className="text-white">Loading weather...</p>}
+      {loading && <LoadingSpinner />}
 
       {error && <p className="text-white">{error}</p>}
 
