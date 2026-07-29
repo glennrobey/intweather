@@ -5,7 +5,8 @@
 namespace Cors {
 
 inline void addHeaders(const drogon::HttpResponsePtr &resp) {
-  resp->addHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  resp->addHeader("Access-Control-Allow-Origin",
+                  "https://intweather.vercel.app");
 
   resp->addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
