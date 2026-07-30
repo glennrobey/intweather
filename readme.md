@@ -1,4 +1,4 @@
-# IntWeather
+# International Weather
 
 Full-stack weather application that exposes a C++ REST API and a modern React frontend for retrieving and displaying weather information.
 
