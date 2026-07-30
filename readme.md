@@ -39,7 +39,4 @@ frontend/
 ```
 
 ## Future Work
-- Weather provider integration
 - Forecast support
-- Authentication
-- Docker deployment
